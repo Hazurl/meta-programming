@@ -2,7 +2,8 @@
 
 #include <mtp/Config.h>
 
-BEGIN_MTP_NS
+MTP_NAMESPACE {
+    
 
 static constexpr ui64 get_Seed_Time() {
     ui64 value = 0;
@@ -23,4 +24,4 @@ public:
 using Seed_Time = Seed_Fixed<get_Seed_Time()>;
 using Seed = Seed_Time;
 
-END_MTP_NS
+}

@@ -1,8 +1,8 @@
 #pragma once
 #include <mtp/Config.h> 
 
-BEGIN_MTP_NS
-
+MTP_NAMESPACE {
+    
 template<typename T, T t>
 struct Constant {
     static constexpr T value = t;
@@ -14,7 +14,17 @@ using i32Const = Constant<i32, v>;
 template<bool b>
 using boolConst = Constant<bool, b>;
 
-template<typename...>
-class ShowType;
+template<typename T>
+struct TConst {
+    using type = T;
+};
 
-END_MTP_NS
+template<typename...>
+struct ShowType;
+
+template<typename...>
+struct AlwaysFalse {
+    static constexpr bool value = false;
+};
+
+}
