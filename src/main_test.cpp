@@ -15,8 +15,9 @@ int main (int , char** ) {
     using A0 = at<L, 0>;
     using A1 = at<L, 1>;
     using A2 = at<L, 2>;
-    //using A3 = at<L, 3>;
-    //ShowType<A0, A1, A2> s;
+    using A3 = at<L, 3>;
+    using A4 = at<int, 3>;
+    ShowType<A0, A1, A2> s;
 
     std::cout << size<L>::value << std::endl; 
     std::cout << empty<L>::value << std::endl; 
