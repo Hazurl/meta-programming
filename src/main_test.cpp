@@ -13,14 +13,20 @@ int main (int , char** ) {
 
     using L = List<int, double*, char&>;
     using __ = ShowType<
-        L,
-        at<L, 0>,
-        at<L, 2>, 
-        at<push<L, long>, 3>, 
-//        at<push<int, long>, 3>, 
+//        L,
+//        at<L, 0>,
+//        at<L, 2>, 
+//        at<push_back<L, long>, 3>, 
+//        at<push_back<int, long>, 3>, 
 //        at<L, 5>, 
 //        clear<void>,
-        clear<L>,
+//        clear<L>,
+//        concat<List<int, int&>, List<double&&, double const>>,
+//        range<L, 1, 2>,
+//        insert_back<L, int&&>,
+//        insert_front<L, int&&>,
+//        insert<L, int&&, 12>,
+        insert_range<L, L, 1>,
 
         void
     >;
