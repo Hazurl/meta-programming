@@ -1,5 +1,12 @@
 #pragma once
+
 #include <mtp/Config.h> 
+#include <mtp/Macro.h>
+
+#define MTP_STATIC_ERROR(template, msg) \
+    static_assert(AlwaysFalse<template>::value, MTP_COLOR(MTP_CB_RED, msg))
+#define MTP_STATIC_ASSERT(cond, msg) \
+    static_assert(cond, MTP_COLOR(MTP_CB_RED, msg))
 
 MTP_NAMESPACE {
     
