@@ -4,5 +4,6 @@
 #include <mtp/list/implementation/At.h>
 #include <mtp/list/implementation/Size.h>
 #include <mtp/list/implementation/Empty.h>
+#include <mtp/list/implementation/Clear.h>
 #include <mtp/list/implementation/Push.h>
 //#include <mtp/list/implementation/Apply.h>

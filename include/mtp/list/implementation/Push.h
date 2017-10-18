@@ -9,7 +9,7 @@ MTP_NAMESPACE_DETAILS {
 
 template<typename L, typename T>
 struct List_push_impl : public TConst<void> {
-    MTP_STATIC_ERROR(L, "List::push -- You can only push to a List");
+    static_assert(AlwaysFalse<T>::value, MTP_COLOR(MTP_CB_RED, "List::push -- You can only push to a List"));
 };
 
 template<typename T, typename...Args>

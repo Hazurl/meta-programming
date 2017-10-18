@@ -28,16 +28,16 @@ struct List_at_impl_check_index : public TConst<typename List_at_impl_args<N, Ar
 
 template<i32 N, typename...Args>
 struct List_at_impl_check_index<false, N, Args...> : public TConst<void> {
-    MTP_STATIC_ASSERT(
+    static_assert(
         (N >= 0 && N < size<List<Args...>>::value), 
-        "List::at -- Out of bounds, the index is too high");
+        MTP_COLOR(MTP_CB_RED, "List::at -- Out of bounds, the index is too high"));
 };
 
 // Is List ?
 
 template<i32 N, typename T>
 struct List_at_impl_is_list : public TConst<void> {
-    MTP_STATIC_ERROR(T, "List::at -- Parameter must be a List");
+    static_assert(AlwaysFalse<T>::value, MTP_COLOR(MTP_CB_RED, "List::at -- Parameter must be a List"));
 };
 
 template<i32 N, typename...Args>
