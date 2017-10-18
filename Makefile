@@ -116,9 +116,22 @@ again:
 	@make clean
 	@make run
 
-clean-lib:
-	rm /usr/lib/libhaz.so
-	rm -rf /usr/include/haz
+uninstall:
+	@echo "Remove /usr/include/mtp ..."
+	@rm -rf /usr/include/mtp
+	@echo "--------------------"
+	@echo "Library uninstalled!"
+	@echo "--------------------"
+
+install:
+	@echo "Copy includes files to /usr/include/mtp ..."
+	@mkdir /usr/include/mtp
+	@cp -a $(INCLUDE_FOLDER)/mtp/. /usr/include/mtp
+	@echo -n "\033[34m"
+	@echo "------------------"
+	@echo "Library installed!"
+	@echo "------------------"
+	@echo -n "\033[0m"
 
 valgrind: $(DEST)
 	@echo -n "\033[34m"
