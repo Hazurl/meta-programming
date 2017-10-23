@@ -19,6 +19,10 @@ struct List_empty_impl<List<>> : public boolConst<true> {};
 
 template<typename L>
 using empty = details::List_empty_impl<L>;
+
+template<typename L>
+static constexpr bool empty_v = empty<L>::value;
+
 using ListEmpty = List<>;
 
 }

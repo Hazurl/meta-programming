@@ -3,31 +3,69 @@
 #include <mtp/Config.h>
 #include <mtp/Utils.h>
 #include <mtp/list/implementation/List.h>
+#include <mtp/list/implementation/Insert.h>
+#include <mtp/list/implementation/Empty.h>
+#include <mtp/list/implementation/At.h>
 
 MTP_NAMESPACE {
 MTP_NAMESPACE_DETAILS {
 
-template<typename template <typename...> F, typename, typename...>
-struct applyListArgs_impl;
+template<typename F, typename T>
+struct transform_one_impl : public TConst<F<T>> {};
 
-template<typename template <typename...> F, typename...Args, typename...ArgsF>
-struct applyListArgs_impl<List<Args...>> : public TConst<F<Args..., ArgsF...>>{};
+template<typename F, typename A, typename...Args>
+struct transform_all_impl : public TConst<insert_front<typename transform_all_impl<F, Args...>::type, F<A>>> {};
 
-template<typename template <typename...> F, typename, typename...>
-struct applyArgsListArgs_impl;
+template<typename Fs>
+struct transform_all_impl : public TConst<ListEmpty> {};
 
-template<typename template <typename...> F, typename...Args, typename...ArgsF>
-struct applyArgsList_impl<List<Args...>> : public TConst<F<ArgsF..., Args...>>{};
+template<typename T>
+struct apply_lambda_one_impl {
+    constexpr apply_lambda_one_impl () = default;
+
+    template<typename F, typename Ret = void>
+    constexpr Ret operator () (F && f) {
+        return f(declval<T>());
+    }
+};
+
+template<typename...Args>
+struct apply_lambda_all_impl;
+
+template<typename A, typename...Args>
+struct apply_lambda_all_impl {
+    constexpr apply_lambda_all_impl () = default;
+
+    template<typename F>
+    constexpr void operator () (F && f) {
+        apply_lambda_one_impl<A>{}(std::forward<F>(f));
+        apply_lambda_all_impl<Args...>{}(std::forward<F>(f));
+    }
+};
+
+template<>
+struct apply_lambda_all_impl<> {
+    constexpr apply_lambda_all_impl () = default;
+
+    template<typename F>
+    constexpr void operator () (F &&) {}
+};
 
 }
 
-template<typename template <typename...> F, typename L>
-using applyList = details::applyListArgs_impl<F, L>;
+template<typename L>
+struct apply_lambda {
+    static_assert(AlwaysFalse<L>::value, MTP_COLOR(MTP_CB_RED, "List::apply_lambda -- Parameter must be a List"));
+};
 
-template<typename template <typename...> F, typename L, typename...ArgsF>
-using applyListArgs = details::applyListArgs_impl<F, L, ArgsF...>;
+template<typename...Args>
+struct apply_lambda<List<Args...>> {
+    constexpr apply_lambda () = default;
 
-template<typename template <typename...> F, typename L, typename...ArgsF>
-using applyArgsList = details::applyListArgs_impl<F, ArgsF..., L>;
+    template<typename F>
+    constexpr void operator () (F && f) const {
+        details::apply_lambda_all_impl<Args...>(std::forward<F>(f));
+    }
+};
 
 }

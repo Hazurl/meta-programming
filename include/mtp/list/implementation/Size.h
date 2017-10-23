@@ -17,4 +17,7 @@ struct List_size_impl<List<Xs...>>  : public i32Const<sizeof...(Xs)> {};
 template<typename L>
 using size = details::List_size_impl<L>;
 
+template<typename L>
+static constexpr i32 size_v = size<L>::value;
+
 }

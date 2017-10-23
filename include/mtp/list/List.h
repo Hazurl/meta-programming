@@ -9,3 +9,4 @@
 #include <mtp/list/implementation/Erase.h>
 #include <mtp/list/implementation/Range.h>
 #include <mtp/list/implementation/Concat.h>
+#include <mtp/list/implementation/Index_of.h>
