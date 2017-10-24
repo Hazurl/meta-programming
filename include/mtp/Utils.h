@@ -34,4 +34,7 @@ struct AlwaysFalse {
     static constexpr bool value = false;
 };
 
+template<typename T>
+using type_of = typename T::type;
+
 }

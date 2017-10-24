@@ -36,15 +36,15 @@ struct List_insert_back_range_impl<List<Args...>, List<Trgs...>> : public TConst
 }
 
 template<typename L, typename T>
-using insert_front = typename details::List_insert_front_impl<L, T>::type;
+using insert_front = type_of<details::List_insert_front_impl<L, T>>;
 
 template<typename L, typename T>
-using insert_back = typename details::List_insert_back_impl<L, T>::type;
+using insert_back = type_of<details::List_insert_back_impl<L, T>>;
 
 template<typename L, typename T, ui32 P>
 using insert = concat<insert_back<range<L, 0, P>, T>, range<L, P>>;
 
 template<typename L, typename T, ui32 P>
-using insert_range = concat<typename details::List_insert_back_range_impl<range<L, 0, P>, T>::type, range<L, P>>;
+using insert_range = concat<type_of<details::List_insert_back_range_impl<range<L, 0, P>, T>>, range<L, P>>;
 
 }

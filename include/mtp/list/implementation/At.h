@@ -16,7 +16,7 @@ template<i32 N, typename...Args>
 struct List_at_impl_args;
 
 template<i32 N, typename A, typename...Args>
-struct List_at_impl_args<N, A, Args...> : public TConst<typename List_at_impl_args<N-1, Args...>::type > {};
+struct List_at_impl_args<N, A, Args...> : public TConst<type_of<List_at_impl_args<N-1, Args...>>> {};
 
 template<typename A, typename...Args> 
 struct List_at_impl_args<0, A, Args...>  : public TConst<A> {};
@@ -24,7 +24,7 @@ struct List_at_impl_args<0, A, Args...>  : public TConst<A> {};
 // Index in range [0, size[ ?
 
 template<bool, i32 N, typename...Args>
-struct List_at_impl_check_index : public TConst<typename List_at_impl_args<N, Args...>::type > {};
+struct List_at_impl_check_index : public TConst<type_of<List_at_impl_args<N, Args...>>> {};
 
 template<i32 N, typename...Args>
 struct List_at_impl_check_index<false, N, Args...> : public TConst<void> {
@@ -51,7 +51,7 @@ using List_at_impl = List_at_impl_is_list<N, L>;
 }
 
 template<typename L, ui32 N>
-using at = typename details::List_at_impl<L, N>::type;
+using at = type_of<details::List_at_impl<L, N>>;
 
 template<typename L>
 using first = at<L, 0>;

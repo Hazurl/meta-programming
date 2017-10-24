@@ -19,6 +19,6 @@ struct List_clear_impl<List<Args...>> : public TConst<ListEmpty> {};
 }
 
 template<typename L>
-using clear = typename details::List_clear_impl<L>::type;
+using clear = type_of<details::List_clear_impl<L>>;
 
 }

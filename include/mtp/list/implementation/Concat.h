@@ -18,6 +18,6 @@ struct List_concat_impl<List<Krgs...>, List<Lrgs...>> : public TConst<List<Krgs.
 }
 
 template<typename L0, typename L1>
-using concat = typename details::List_concat_impl<L0, L1>::type;
+using concat = type_of<details::List_concat_impl<L0, L1>>;
 
 }

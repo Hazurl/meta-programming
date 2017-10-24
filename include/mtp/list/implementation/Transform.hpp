@@ -16,7 +16,7 @@ template<template<typename> typename F, typename...Args>
 struct List_transform_all_impl;
 
 template<template<typename> typename F, typename A, typename...Args>
-struct List_transform_all_impl<F, A, Args...> : public TConst<insert_front<typename List_transform_all_impl<F, Args...>::type, F<A>>> {};
+struct List_transform_all_impl<F, A, Args...> : public TConst<insert_front<type_of<List_transform_all_impl<F, Args...>>, F<A>>> {};
 
 template<template<typename> typename F>
 struct List_transform_all_impl<F> : public TConst<ListEmpty> {};
@@ -27,11 +27,11 @@ struct List_transform_impl_is_list : public TConst<void> {
 };
 
 template<template<typename> typename F, typename...Args>
-struct List_transform_impl_is_list<F, List<Args...>> : public TConst<typename List_transform_all_impl<F, Args...>::type> {};
+struct List_transform_impl_is_list<F, List<Args...>> : public TConst<type_of<List_transform_all_impl<F, Args...>>> {};
 
 }
 
 template<typename L, template<typename> typename F>
-using transform = typename details::List_transform_impl_is_list<F, L>::type;
+using transform = type_of<details::List_transform_impl_is_list<F, L>>;
 
 }

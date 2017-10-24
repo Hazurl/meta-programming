@@ -17,12 +17,12 @@ template<typename L, ui32 B, ui32 E, ui32 C = 0, bool before_size = (C < size<L>
 struct List_range_impl : public TConst< 
         concat< // TODO: push_front
             List< at< L, C> >, 
-            typename List_range_impl<L, B, E, C+1>::type
+            type_of<List_range_impl<L, B, E, C+1>>
         >
     > {};
 
 template<typename L, ui32 B, ui32 E, ui32 C>
-struct List_range_impl<L, B, E, C, true, false, true> : public TConst<typename List_range_impl<L, B, E, C+1>::type> {};
+struct List_range_impl<L, B, E, C, true, false, true> : public TConst<type_of<List_range_impl<L, B, E, C+1>>> {};
 
 template<typename L, ui32 B, ui32 E, ui32 C>
 struct List_range_impl<L, B, E, C, true, true, false> : public TConst<ListEmpty> {};
@@ -33,7 +33,7 @@ struct List_range_impl<L, B, E, C, false, after, before> : public TConst<ListEmp
 // B <= E ?
 
 template<typename L, ui32 B, ui32 E, bool good = (B <= E)>
-struct List_range_impl_check_index : public TConst<typename List_range_impl<L, B, E>::type > {};
+struct List_range_impl_check_index : public TConst<type_of<List_range_impl<L, B, E>> > {};
 
 template<typename L, ui32 B, ui32 E>
 struct List_range_impl_check_index<L, B, E, false> : public TConst<ListEmpty> {
@@ -55,7 +55,7 @@ struct List_range_impl_is_list<List<Args...>, B, E> : public List_range_impl_che
 }
 
 template<typename L, ui32 Begin, ui32 End = -1>
-using range = typename details::List_range_impl_is_list<L, Begin, End>::type;
+using range = type_of<details::List_range_impl_is_list<L, Begin, End>>;
 
 template<typename L, ui32 I>
 using before = range<L, 0, I>;

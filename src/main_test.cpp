@@ -33,7 +33,7 @@ int main (int , char** ) {
 //        insert_front<L, int&&>,
 //        insert<L, int&&, 12>,
         insert_range<L, L, 1>,
-        transform<transform<int, _to_int>, type_of>,
+        transform<transform<L, _to_int>, type_of>,
 
         void
     >;
