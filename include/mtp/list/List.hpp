@@ -8,6 +8,7 @@
 #include <mtp/list/implementation/Empty.hpp>
 #include <mtp/list/implementation/Erase.hpp>
 #include <mtp/list/implementation/Fold.hpp>
+#include <mtp/list/implementation/Func.hpp>
 #include <mtp/list/implementation/Index_of.hpp>
 #include <mtp/list/implementation/Insert.hpp>
 #include <mtp/list/implementation/Range.hpp>
