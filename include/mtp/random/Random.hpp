@@ -1,7 +1,7 @@
 #pragma once
 
-#include <mtp/Config.h>
-#include <mtp/random/Seed.h>
+#include <mtp/Config.hpp>
+#include <mtp/random/Seed.hpp>
 
 MTP_NAMESPACE {
     /*

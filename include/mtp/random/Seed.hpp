@@ -1,6 +1,6 @@
 #pragma once
 
-#include <mtp/Config.h>
+#include <mtp/Config.hpp>
 
 MTP_NAMESPACE {
     

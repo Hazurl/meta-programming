@@ -1,7 +1,7 @@
 #pragma once
 
-#include <mtp/Config.h> 
-#include <mtp/Macro.h>
+#include <mtp/Config.hpp> 
+#include <mtp/Macro.hpp>
 
 #define MTP_STATIC_ERROR(template, msg) \
     static_assert(AlwaysFalse<template>::value, MTP_COLOR(MTP_CB_RED, msg))

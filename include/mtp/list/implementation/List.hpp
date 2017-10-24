@@ -1,7 +1,7 @@
 #pragma once
 
-#include <mtp/Config.h>
-#include <mtp/Utils.h>
+#include <mtp/Config.hpp>
+#include <mtp/Utils.hpp>
 
 MTP_NAMESPACE {
 MTP_NAMESPACE_DETAILS {

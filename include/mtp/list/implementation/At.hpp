@@ -1,9 +1,9 @@
 #pragma once
 
-#include <mtp/Config.h>
-#include <mtp/Utils.h>
-#include <mtp/list/implementation/List.h>
-#include <mtp/list/implementation/Size.h>
+#include <mtp/Config.hpp>
+#include <mtp/Utils.hpp>
+#include <mtp/list/implementation/List.hpp>
+#include <mtp/list/implementation/Size.hpp>
 
 #include <type_traits>
 

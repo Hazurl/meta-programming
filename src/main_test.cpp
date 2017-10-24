@@ -1,10 +1,10 @@
-#include <mtp/Config.h>
-#include <mtp/Utils.h>
+#include <mtp/Config.hpp>
+#include <mtp/Utils.hpp>
 
-#include <mtp/random/Seed.h>
-#include <mtp/random/Random.h>
+#include <mtp/random/Seed.hpp>
+#include <mtp/random/Random.hpp>
 
-#include <mtp/list/List.h>
+#include <mtp/list/List\.hpp>
 
 #include <iostream>
 

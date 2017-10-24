@@ -1,10 +1,10 @@
 #pragma once
 
-#include <mtp/Config.h>
-#include <mtp/Utils.h>
-#include <mtp/list/implementation/List.h>
-#include <mtp/list/implementation/Range.h>
-#include <mtp/list/implementation/Concat.h>
+#include <mtp/Config.hpp>
+#include <mtp/Utils.hpp>
+#include <mtp/list/implementation/List.hpp>
+#include <mtp/list/implementation/Range.hpp>
+#include <mtp/list/implementation/Concat.hpp>
 
 MTP_NAMESPACE {
 MTP_NAMESPACE_DETAILS {
