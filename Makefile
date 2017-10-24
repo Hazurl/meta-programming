@@ -28,7 +28,7 @@ MAIN_OBJ := $(patsubst %.cpp,build/main/%.o,$(MAIN))
 DEST := build/main_app
 # Arguments
 ARGS := 
-MORE_ARGS :=
+MORE_ARGS := 
 # Build Directories
 BUILD_DIR := build build/main build/src $(addprefix build/src/,$(SRC_DIR)) $(addprefix build/deps/,$(SRC_DIR))
 # .o files
@@ -52,7 +52,9 @@ DEPS_FLAGS := -MMD -MP
 # C++ optimsation level
 OPTIM := -O2
 # C++ flags
-FLAGS := -std=c++17 -g3 -Wall -Wextra -Wno-pmf-conversions -fno-strict-aliasing
+FLAGS := -std=c++17 -g3 -Wall -Wextra -Wno-pmf-conversions -fno-strict-aliasing 
+# pre-define
+DEFINE := #-DMTP_USE_COLOR
 # C++ librairie
 LIBS := 
 # Header include folder
@@ -66,7 +68,7 @@ all: $(DEST)
 # Compile each file and link them
 $(DEST): $(BUILD_DIR) $(OBJ) $(MAIN_OBJ)
 	@echo "\033[32m\033[1m:: Linking of all objects\033[0m"
-	@g++ $(INCLUDE) $(FLAGS) $(OBJ) $(MAIN_OBJ) -o $(DEST) $(LIBS)
+	@g++ $(INCLUDE) $(FLAGS) $(DEFINE) $(OBJ) $(MAIN_OBJ) -o $(DEST) $(LIBS)
 	@echo -n "\033[34m"
 	@echo "---------------"
 	@echo "Build finished!"
@@ -76,12 +78,12 @@ $(DEST): $(BUILD_DIR) $(OBJ) $(MAIN_OBJ)
 # Compile a file into a object
 build/src/%.o: %.cpp
 	@echo "\033[1m:: Building" "$<" "\033[0m"
-	@g++ -c $(INCLUDE) $(OPTIM) $(FLAGS) $(DEPS_FLAGS) -o "$@" "$<"
+	g++ -c $(INCLUDE) $(OPTIM) $(FLAGS) $(DEFINE) $(DEPS_FLAGS) -o "$@" "$<"
 
 # Compile a file into a object
 $(MAIN_OBJ): $(MAIN_PATH)
 	@echo "\033[1m:: Building Main" "\033[0m"
-	@g++ -c $(INCLUDE) $(OPTIM) $(FLAGS) -o "$@" "$<"
+	@g++ -c $(INCLUDE) $(OPTIM) $(FLAGS) $(DEFINE) -o "$@" "$<"
 
 # Make build folders
 $(BUILD_DIR):

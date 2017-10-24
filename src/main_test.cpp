@@ -25,7 +25,7 @@ int main (int , char** ) {
 //        at<push_back<L, long>, 3>, 
 //        at<push_back<int, long>, 3>, 
 //        at<L, 5>, 
-//        clear<void>,
+        clear<void>,
 //        clear<L>,
 //        concat<List<int, int&>, List<double&&, double const>>,
 //        range<L, 1, 2>,
