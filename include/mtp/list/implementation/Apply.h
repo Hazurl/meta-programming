@@ -10,18 +10,6 @@
 MTP_NAMESPACE {
 MTP_NAMESPACE_DETAILS {
 
-template<template<typename> typename F, typename T>
-struct transform_one_impl : public TConst<F<T>> {};
-
-template<template<typename> typename F, typename...Args>
-struct transform_all_impl;
-
-template<template<typename> typename F, typename A, typename...Args>
-struct transform_all_impl<F, A, Args...> : public TConst<insert_front<typename transform_all_impl<F, Args...>::type, F<A>>> {};
-
-template<template<typename> typename F>
-struct transform_all_impl<F> : public TConst<ListEmpty> {};
-
 template<typename T>
 struct apply_lambda_one_impl {
     constexpr apply_lambda_one_impl () = default;

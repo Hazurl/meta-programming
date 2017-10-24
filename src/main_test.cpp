@@ -8,9 +8,15 @@
 
 #include <iostream>
 
-int main (int , char** ) {
-    using namespace mtp;
+using namespace mtp;
 
+template<typename T>
+using to_int = int;
+
+template<typename T>
+struct _to_int : TConst<int> {};
+
+int main (int , char** ) {
     using L = List<int, double*, char&>;
     using __ = ShowType<
 //        L,
@@ -27,6 +33,7 @@ int main (int , char** ) {
 //        insert_front<L, int&&>,
 //        insert<L, int&&, 12>,
         insert_range<L, L, 1>,
+        transform<transform<int, _to_int>, type_of>,
 
         void
     >;
