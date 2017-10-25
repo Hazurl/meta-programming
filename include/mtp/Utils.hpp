@@ -30,6 +30,9 @@ template<typename...>
 struct ShowType;
 
 template<typename...>
+struct Nothing {};
+
+template<typename...>
 struct AlwaysFalse {
     static constexpr bool value = false;
 };
