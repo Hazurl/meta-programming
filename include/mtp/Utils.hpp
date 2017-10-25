@@ -30,7 +30,7 @@ template<typename...>
 struct ShowType;
 
 template<typename...>
-struct Nothing {};
+using Nothing = void;
 
 template<typename...>
 struct AlwaysFalse {
