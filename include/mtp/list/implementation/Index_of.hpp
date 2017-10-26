@@ -12,8 +12,11 @@ MTP_NAMESPACE_DETAILS {
 
 // Flat Args
 
+template<i32 I, typename...Args>
+struct List_index_of_impl_args;
+
 template<i32 I, typename T, typename...Args>
-struct List_index_of_impl_args : public i32Const<I> {};
+struct List_index_of_impl_args<I, T, T, Args...> : public i32Const<I> {};
 
 template<i32 I, typename T, typename A, typename...Args>
 struct List_index_of_impl_args<I, T, A, Args...> : public i32Const<List_index_of_impl_args<I+1, T, Args...>::value> {};
