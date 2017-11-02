@@ -9,6 +9,7 @@
 #include <mtp/list/implementation/Count.hpp>
 #include <mtp/list/implementation/Empty.hpp>
 #include <mtp/list/implementation/Erase.hpp>
+#include <mtp/list/implementation/Filter.hpp>
 #include <mtp/list/implementation/Fold.hpp>
 #include <mtp/list/implementation/Func.hpp>
 #include <mtp/list/implementation/Index_of.hpp>
