@@ -27,7 +27,7 @@ struct List_transform_impl_is_list : public TConst<void> {
 };
 
 template<template<typename> typename F, typename...Args>
-struct List_transform_impl_is_list<F, List<Args...>> : public TConst<type_of<List_transform_all_impl<F, Args...>>> {};
+struct List_transform_impl_is_list<F, List<Args...>> : public List_transform_all_impl<F, Args...> {};
 
 }
 

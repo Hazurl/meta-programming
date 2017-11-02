@@ -6,6 +6,7 @@
 #include <mtp/list/implementation/At.hpp>
 #include <mtp/list/implementation/Clear.hpp>
 #include <mtp/list/implementation/Concat.hpp>
+#include <mtp/list/implementation/Count.hpp>
 #include <mtp/list/implementation/Empty.hpp>
 #include <mtp/list/implementation/Erase.hpp>
 #include <mtp/list/implementation/Fold.hpp>
@@ -15,3 +16,4 @@
 #include <mtp/list/implementation/Range.hpp>
 #include <mtp/list/implementation/Size.hpp>
 #include <mtp/list/implementation/Transform.hpp>
+#include <mtp/list/implementation/Unique.hpp>
