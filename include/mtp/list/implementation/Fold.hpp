@@ -28,9 +28,11 @@ struct List_fold_impl_is_list<T, F, t, List<Args...>> : public List_fold_impl<T,
 
 }
 
+// internal error ...
+/*
 template<typename L, typename Ret, Ret Start, template<typename, Ret, Ret> typename F>
-using fold = details::List_fold_impl_is_list<Ret, F, Start, L>;
-
+using fold = details::List_fold_impl_is_list<Ret, F, Start, L>; 
+ 
 template<typename L>
 using all = fold<L, bool, true, func::all>;
 
@@ -45,5 +47,5 @@ using none = fold<L, bool, false, func::none>;
 
 template<typename L, typename Ret = i32>
 using sum = fold<L, Ret, 0, func::plus>;
-
+*/
 }
