@@ -40,4 +40,25 @@ struct AlwaysFalse {
 template<typename T>
 using type_of = typename T::type;
 
+MTP_NAMESPACE_DETAILS {
+
+template<bool use_a, typename A, typename B>
+struct switch_t_impl : public TConst<A> {};
+template<typename A, typename B>
+struct switch_t_impl<false, A, B> : public TConst<B> {};
+    
+}
+
+template<bool use_first_type, typename A, typename B>
+using switch_t = type_of<details::switch_t_impl<use_first_type, A, B>>;
+
+template<bool put_const, typename T>
+using add_const_if = switch_t<put_const, const T, T>;
+
+template<bool put_ptr, typename T>
+using add_ptr_if = switch_t<put_ptr, T*, T>;
+
+template<bool put_ref, typename T>
+using add_ref_if = switch_t<put_ref, T&, T>;
+
 }
