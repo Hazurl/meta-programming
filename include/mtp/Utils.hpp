@@ -52,13 +52,22 @@ struct switch_t_impl<false, A, B> : public TConst<B> {};
 template<bool use_first_type, typename A, typename B>
 using switch_t = type_of<details::switch_t_impl<use_first_type, A, B>>;
 
+template<typename T>
+using add_const = const T;
+
+template<typename T>
+using add_ptr = T*;
+
+template<typename T>
+using add_ref = T&;
+
 template<bool put_const, typename T>
-using add_const_if = switch_t<put_const, const T, T>;
+using add_const_if = switch_t<put_const, add_const<T>, T>;
 
 template<bool put_ptr, typename T>
-using add_ptr_if = switch_t<put_ptr, T*, T>;
+using add_ptr_if = switch_t<put_ptr, add_ptr<T>, T>;
 
 template<bool put_ref, typename T>
-using add_ref_if = switch_t<put_ref, T&, T>;
+using add_ref_if = switch_t<put_ref, add_ref<T>, T>;
 
 }
