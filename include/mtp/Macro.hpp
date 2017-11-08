@@ -1,5 +1,15 @@
 #pragma once
 
+#ifdef __GNUC__
+    #define DEPRECATED(x...) x __attribute__((deprecated))
+#elif defined(_MSC_VER)
+    #define DEPRECATED(x...) x __declspec(deprecated)
+#else
+    #pragma message("WARNING: You need to implement DEPRECATED for this compiler")
+    #define DEPRECATED(x...) x
+#endif
+
+
 #ifdef MTP_USE_COLOR
 
     #define MTP_C_RST       "\033[0m"

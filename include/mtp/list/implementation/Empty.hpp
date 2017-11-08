@@ -10,10 +10,10 @@ MTP_NAMESPACE_DETAILS {
 template<typename> struct List_empty_impl;
 
 template<typename...Xs> 
-struct List_empty_impl<List<Xs...>>  : public boolConst<false> {};
+struct List_empty_impl<List<Xs...>>  : public False {};
 
 template<> 
-struct List_empty_impl<List<>> : public boolConst<true> {};
+struct List_empty_impl<List<>> : public True {};
     
 }
 

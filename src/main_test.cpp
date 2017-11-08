@@ -41,8 +41,8 @@ int main (int , char** ) {
     std::cout << size<L>::value << std::endl; 
     std::cout << empty<L>::value << std::endl; 
     std::cout << empty<List<>>::value << std::endl; 
-    std::cout << fold<List<i32Const<1>, i32Const<2>, i32Const<3>, i32Const<4>, i32Const<5>>, i32, 0, func::plus>::value << std::endl;
-    std::cout << sum<List<i32Const<1>, i32Const<2>, i32Const<3>, i32Const<4>, i32Const<5>>>::value << std::endl;
+    //std::cout << fold<List<i32Const<1>, i32Const<2>, i32Const<3>, i32Const<4>, i32Const<5>>, i32, 0, func::plus>::value << std::endl;
+    //std::cout << sum<List<i32Const<1>, i32Const<2>, i32Const<3>, i32Const<4>, i32Const<5>>>::value << std::endl;
     
     return 0;
 }

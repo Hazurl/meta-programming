@@ -9,13 +9,13 @@ template<i32 N, typename T, typename...Args>
 struct List_count_impl_args;
 
 template<i32 N, typename T, typename A, typename...Args>
-struct List_count_impl_args<N, T, A, Args...> : public i32Const<List_count_impl_args<N, T, Args...>::value> {};
+struct List_count_impl_args<N, T, A, Args...> : public i32_<List_count_impl_args<N, T, Args...>::value> {};
 
 template<i32 N, typename T, typename...Args>
-struct List_count_impl_args<N, T, T, Args...> : public i32Const<List_count_impl_args<N+1, T, Args...>::value> {};
+struct List_count_impl_args<N, T, T, Args...> : public i32_<List_count_impl_args<N+1, T, Args...>::value> {};
 
 template<i32 N, typename T>
-struct List_count_impl_args<N, T> : public i32Const<N> {};
+struct List_count_impl_args<N, T> : public i32_<N> {};
 
 // Is List ?
 

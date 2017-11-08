@@ -10,7 +10,7 @@ MTP_NAMESPACE_DETAILS {
 template<typename> struct List_size_impl;
 
 template<typename...Xs> 
-struct List_size_impl<List<Xs...>>  : public i32Const<sizeof...(Xs)> {};
+struct List_size_impl<List<Xs...>>  : public i32_<sizeof...(Xs)> {};
     
 }
 

@@ -15,11 +15,20 @@ struct Constant {
     static constexpr T value = t;
 };
 
-template<i32 v>
-using i32Const = Constant<i32, v>;
+#define USING_CONST(T) template<T v> using T ## _ = Constant<T, v>;
+    USING_CONST(i64)
+    USING_CONST(ui64)
+    USING_CONST(i32)
+    USING_CONST(ui32)
+    USING_CONST(i16)
+    USING_CONST(ui16)
+    USING_CONST(i8)
+    USING_CONST(ui8)
+    USING_CONST(bool)
+#undef USING_CONST
 
-template<bool b>
-using boolConst = Constant<bool, b>;
+using False = bool_<false>;
+using True = bool_<true>;
 
 template<typename T>
 struct TConst {

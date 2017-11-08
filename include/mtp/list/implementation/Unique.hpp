@@ -11,13 +11,13 @@ template<typename...Args>
 struct List_unique_impl;
 
 template<typename A, typename...Args>
-struct List_unique_impl<A, Args...> : boolConst<(count_v<List<Args...>, A> == 0) && List_unique_impl<Args...>::value> {};
+struct List_unique_impl<A, Args...> : bool_<(count_v<List<Args...>, A> == 0) && List_unique_impl<Args...>::value> {};
 
 template<>
-struct List_unique_impl<> : boolConst<true> {};
+struct List_unique_impl<> : True {};
 
 template<typename L>
-struct List_unique_impl_is_list : public boolConst<false> {
+struct List_unique_impl_is_list : public False {
     static_assert(AlwaysFalse<L>::value, MTP_COLOR(MTP_CB_RED, "List::unique -- Parameter must be a List"));
 };
 
@@ -31,6 +31,5 @@ using unique = details::List_unique_impl_is_list<L>;
 
 template<typename L>
 static constexpr bool unique_v = unique<L>::value;
-
 
 }
