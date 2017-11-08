@@ -7,7 +7,6 @@
 #include <mtp/list/implementation/At.hpp>
 #include <mtp/list/implementation/Concat.hpp>
 #include <mtp/list/implementation/Size.hpp>
-#include <mtp/list/implementation/Insert.hpp>
 
 MTP_NAMESPACE {
 MTP_NAMESPACE_DETAILS {
@@ -18,8 +17,8 @@ template<typename L, ui32 B, ui32 E, ui32 C = 0,
          bool before_size = (C < size<L>::value), 
          bool after_begin = (C >= B), bool before_end = (C < E)>
 struct List_range_impl : public TConst< 
-        insert_front<
-            at< L, C >, 
+        concat<
+            List<at< L, C >>, 
             type_of<List_range_impl<L, B, E, C+1>>
         >
     > {};

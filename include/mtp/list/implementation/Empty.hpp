@@ -7,7 +7,8 @@
 MTP_NAMESPACE {
 MTP_NAMESPACE_DETAILS {
 
-template<typename> struct List_empty_impl : False {
+template<typename L> 
+struct List_empty_impl : False {
     static_assert(AlwaysFalse<L>::value, MTP_COLOR(MTP_CB_RED, "List::empty -- Parameter must be a List"));    
 };
 

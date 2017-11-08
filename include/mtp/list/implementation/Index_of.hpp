@@ -34,7 +34,7 @@ struct List_index_of_impl_is_list : public TConst<void> {
 template<typename...Args, typename T>
 struct List_index_of_impl_is_list<List<Args...>, T> : public List_index_of_impl_args<0, T, Args...> {};
 
-template<typename, typename T>
+template<typename T>
 struct List_index_of_impl_is_list<List<>, T> : public i32_<-1> {};
 
 // Impl
@@ -51,7 +51,7 @@ template<typename L, typename T>
 static constexpr i32 index_of_v = index_of<L, T>::value;
 
 template<typename L, typename T>
-using in = bool_<index_of_v<L, V> != -1>;
+using in = bool_<index_of_v<L, T> != -1>;
 
 template<typename L, typename T>
 static constexpr bool in_v = in<L, T>::value;
