@@ -7,22 +7,25 @@
 #include <mtp/list/implementation/At.hpp>
 #include <mtp/list/implementation/Concat.hpp>
 #include <mtp/list/implementation/Size.hpp>
+#include <mtp/list/implementation/Insert.hpp>
 
 MTP_NAMESPACE {
 MTP_NAMESPACE_DETAILS {
 
 // impl
 
-template<typename L, ui32 B, ui32 E, ui32 C = 0, bool before_size = (C < size<L>::value), bool after_begin = (C >= B), bool before_end = (C < E)>
+template<typename L, ui32 B, ui32 E, ui32 C = 0, 
+         bool before_size = (C < size<L>::value), 
+         bool after_begin = (C >= B), bool before_end = (C < E)>
 struct List_range_impl : public TConst< 
-        concat< // TODO: push_front
-            List< at< L, C> >, 
+        insert_front<
+            at< L, C >, 
             type_of<List_range_impl<L, B, E, C+1>>
         >
     > {};
 
 template<typename L, ui32 B, ui32 E, ui32 C>
-struct List_range_impl<L, B, E, C, true, false, true> : public TConst<type_of<List_range_impl<L, B, E, C+1>>> {};
+struct List_range_impl<L, B, E, C, true, false, true> : public List_range_impl<L, B, E, C+1> {};
 
 template<typename L, ui32 B, ui32 E, ui32 C>
 struct List_range_impl<L, B, E, C, true, true, false> : public TConst<ListEmpty> {};
@@ -33,19 +36,15 @@ struct List_range_impl<L, B, E, C, false, after, before> : public TConst<ListEmp
 // B <= E ?
 
 template<typename L, ui32 B, ui32 E, bool good = (B <= E)>
-struct List_range_impl_check_index : public TConst<type_of<List_range_impl<L, B, E>> > {};
+struct List_range_impl_check_index : public List_range_impl<L, B, E> {};
 
 template<typename L, ui32 B, ui32 E>
-struct List_range_impl_check_index<L, B, E, false> : public TConst<ListEmpty> {
-    /*static_assert(
-        (B <= E), 
-        MTP_COLOR(MTP_CB_RED, "List::range -- Left index must inferior to right index"));*/
-};
+struct List_range_impl_check_index<L, B, E, false> : public TConst<ListEmpty> {};
 
 // Is List ?
 
 template<typename T, ui32 B, ui32 E>
-struct List_range_impl_is_list : public TConst<void> {
+struct List_range_impl_is_list : public TConst<ListEmpty> {
     static_assert(AlwaysFalse<T>::value, MTP_COLOR(MTP_CB_RED, "List::range -- Parameter must be a List"));
 };
 

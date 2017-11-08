@@ -3,6 +3,8 @@
 #include <mtp/Config.hpp> 
 #include <mtp/Macro.hpp>
 
+#include <utility>
+
 #define MTP_STATIC_ERROR(template, msg) \
     static_assert(AlwaysFalse<template>::value, MTP_COLOR(MTP_CB_RED, msg))
 #define MTP_STATIC_ASSERT(cond, msg) \
@@ -78,5 +80,8 @@ using add_ptr_if = switch_t<put_ptr, add_ptr<T>, T>;
 
 template<bool put_ref, typename T>
 using add_ref_if = switch_t<put_ref, add_ref<T>, T>;
+
+template<typename T>
+using remove_qualifiers = std::remove_cv_t<std::remove_reference_t<T>>;
 
 }

@@ -15,7 +15,7 @@ struct List_flatten_impl_flat<List<Args...>> : TConst<List<Args...>> {};
 
 template<typename L>
 struct List_flatten_impl : TConst<void> {
-    static_assert(AlwaysFalse<L>::value, "List::flatten, parameter must be a list");
+    static_assert(AlwaysFalse<L>::value, MTP_COLOR(MTP_CB_RED, "List::flatten, parameter must be a list"));
 };
 
 template<typename A, typename...Args>
@@ -28,6 +28,9 @@ struct List_flatten_impl<List<A, Args...>> : TConst<
 
 template<typename A>
 struct List_flatten_impl<List<A>> : List_flatten_impl_flat<A> {};
+
+template<>
+struct List_flatten_impl<List<>> : TConst<List<>> {};
 
 }
 

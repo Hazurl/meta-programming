@@ -13,10 +13,10 @@ MTP_NAMESPACE_DETAILS {
 // Flat Args
 
 template<i32 N, typename...Args>
-struct List_at_impl_args;
+struct List_at_impl_args : TConst<void> {};
 
 template<i32 N, typename A, typename...Args>
-struct List_at_impl_args<N, A, Args...> : public TConst<type_of<List_at_impl_args<N-1, Args...>>> {};
+struct List_at_impl_args<N, A, Args...> : public List_at_impl_args<N-1, Args...> {};
 
 template<typename A, typename...Args> 
 struct List_at_impl_args<0, A, Args...>  : public TConst<A> {};
@@ -41,7 +41,8 @@ struct List_at_impl_is_list : public TConst<void> {
 };
 
 template<i32 N, typename...Args>
-struct List_at_impl_is_list<N, List<Args...>> : public List_at_impl_check_index<(N >= 0 && N < size<List<Args...>>::value), N, Args...> {};
+struct List_at_impl_is_list<N, List<Args...>> : 
+    public List_at_impl_check_index<(N >= 0 && N < size<List<Args...>>::value), N, Args...> {};
 
 // Impl
 

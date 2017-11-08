@@ -26,6 +26,9 @@ struct List_count_impl_is_list : public TConst<void> {
 
 template<typename T, typename...Args>
 struct List_count_impl_is_list<T, List<Args...>> : public List_count_impl_args<0, T, Args...> {};
+
+template<typename T>
+struct List_count_impl_is_list<T, List<>> : public i32_<0> {};
     
 }
 
