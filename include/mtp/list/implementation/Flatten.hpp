@@ -22,7 +22,7 @@ template<typename A, typename...Args>
 struct List_flatten_impl<List<A, Args...>> : TConst<
     concat<
         type_of<List_flatten_impl_flat<A>>, 
-        List_flatten_impl<List<Args...>>
+        type_of<List_flatten_impl<List<Args...>>>
     >
 > {};
 
